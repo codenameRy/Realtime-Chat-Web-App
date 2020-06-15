@@ -15,6 +15,16 @@ const io = socketio(server);
 //Socket connected as a client-side socket
 io.on('connection', (socket) => {
     console.log('a user connected!!!!!');
+    
+    //Call for name and room
+    //Pass in a callback
+    socket.on('join', ({ name, room}, callback)=> {
+      console.log(name, room);
+
+      //Immediately trigger a response with the callback (errorHandling)
+      callback();
+    })
+    
     socket.on('disconnect', () => {
         console.log('user disconnected!!!!!!');
       });

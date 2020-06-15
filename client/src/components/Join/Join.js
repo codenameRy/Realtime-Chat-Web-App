@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
+//Styling for component
 import './Join.css';
  
-
 const Join = () => {
 
     const [name, setName] = useState('');
