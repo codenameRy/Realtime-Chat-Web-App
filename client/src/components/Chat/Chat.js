@@ -45,9 +45,9 @@ to update when users log in and out*/
  useEffect(() => {
      socket.on('message', (message) => {
         //Adding new message to messages array
-        setMessages([...messages, message]);
+        setMessages(messages =>[...messages, message]);
      })
- }, [messages]);
+ }, []);
 
  //Function for sending messages
  const sendMessage = (event) => {

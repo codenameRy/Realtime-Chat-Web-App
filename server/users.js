@@ -20,7 +20,7 @@ const addUser = ( { id, name, room } ) => {
     return { user } //Identify exactly which user was pushed
 }
 
-const removeUser = ( { id } ) => {
+const removeUser = (id) => {
     const index = users.findIndex((user) => user.id === id)
 
     if (index !== -1) {
@@ -28,7 +28,7 @@ const removeUser = ( { id } ) => {
     }
 }
 
-const getUser = (id ) => users.find((user) => user.id === id);
+const getUser = (id) => users.find((user) => user.id === id);
 
 const getUserinRoom = (room) => users.filter((user) => user.room === room)
     

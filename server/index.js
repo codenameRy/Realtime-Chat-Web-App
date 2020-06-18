@@ -34,23 +34,26 @@ io.on('connection', (socket) => {
       //If there are no errors, callback another socket.io method join
       socket.join(user.room)
       console.log('user connected')
+
+      //Logic to identify users in the chat room
+      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)})
       //Callback so callback on frontend is called
       callback();
     })
     
     //Expect the message on the backend
-    socket.on('sendMessage', (message, callback)=> {
+    socket.on('sendMessage', (message, callback) => {
       const user = getUser(socket.id);
 
       io.to(user.room).emit('message', { user: user.name , text: message });
-
+      io.to(user.room).emit('roomData', { room: user.rooom , users: getUsersInRoom(user.room)});
       callback();
-    })
+    });
 
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
-        // console.log('user disconnected!!!!!!')
-        if (user) {
+        console.log('user disconnected!!!!!!')
+        if (user){
           io.to(user.room).emit('message', {user: 'admin', text: `${user.name} has logged off`})
         }
       })
