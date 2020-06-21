@@ -1,6 +1,7 @@
 const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
+const cors = require('cors');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js')
 
@@ -12,6 +13,10 @@ const server = http.createServer(app);
 
 //Basic runtime to make Socket.io work
 const io = socketio(server);
+
+//Call router as middleware
+app.use(router);
+app.use(cors());
 
 //Run when we have a client connection and disconnection on our instance
 //Socket connected as a client-side socket
@@ -59,8 +64,7 @@ io.on('connection', (socket) => {
       })
   });
 
-//Call router as middleware
-app.use(router);
+
 
 //Run server
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));

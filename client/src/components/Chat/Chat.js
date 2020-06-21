@@ -18,7 +18,8 @@ const Chat = ({ location }) => {
     const [users, setUsers] = useState('');
     const [message, setMessage] = useState(''); //Way to store one message 
     const [messages, setMessages] = useState([]); //Array to store all message
-    const EndPoint = 'localhost:5000';
+    const EndPoint = 'https://realtime-chat-web-app.herokuapp.com/';
+    //Enpoint change from localhost:5000 to https://realtime-chat-web-app.herokuapp.com/
 
 /*UseEffect and Cleanup instead of the class based components ComponentDidMount() and ComponentWillUnmount() 
 to update when users log in and out*/
